@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 
 export default function graphQLReducer(state = initialState, action) {
-  console.log('entered in graphQLReducer',action.resultGraphQLData);
+  console.log('entered in graphQLReducer', action.resultGraphQLData);
   switch (action.type) {
     case 'LOAD_GRAPHQL_DATA_SUCCESS':
       return Object.assign({}, state, {

@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as graphQLActions from '../../actions/graphQLActions';
 import { Link, browserHistory } from 'react-router';
+
+import '../../../node_modules/toastr/build/toastr.min.css';
+import toastr from '../../../node_modules/toastr/toastr.js';
 import '../../styles/graphql.css';
 
 class ReduxGraphQLPage extends React.Component {
@@ -15,6 +18,23 @@ class ReduxGraphQLPage extends React.Component {
      console.log('buttonClickHandler in GraphQL page');
      this.props.actions.loadGraphQLData();
  }
+    
+ dataLoadingStatus(result) {
+        if(this.props.dataLoading) {    
+            if(result && result.length === 0) {
+               toastr.info("Loading of saga in progress", "Info");
+            }           
+        }         
+
+        if(this.props.dataLoaded) {            
+           console.log('data loaded times **************************');
+            if(result && result.length > 0 && intialResultLength != result.length) {
+                intialResultLength = result.length;
+               toastr.success("Loaded the saga data successfully");
+            }             
+        }
+    } 
+    
     
   render() { 
     let result = this.props.data; 
@@ -31,6 +51,9 @@ class ReduxGraphQLPage extends React.Component {
                     </td>
                  </tr>
     }); 
+      
+    //this.dataLoadingStatus(result);  
+      
     return (
       <div className="jumbotron">
         <h1>React Redux GraphQL </h1>
@@ -62,7 +85,6 @@ class ReduxGraphQLPage extends React.Component {
     );
         
     }
-  
   
 }
 

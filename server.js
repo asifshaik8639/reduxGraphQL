@@ -21,13 +21,13 @@ MongoClient.connect("mongodb://asifshaik:login%40123@ds155473.mlab.com:55473/gra
     if(err) throw err;
     db = database;      
     
-    app.listen(3000, function(err) {
+    app.listen(3010, function(err) {
       if (err) {
         console.log('entered in the server error case');  
         console.log(err);
       } else {
         console.log('opening at http://localhost:3000');  
-        open('http://localhost:3000');
+        open('http://localhost:3010');
       }
     }); 
   
